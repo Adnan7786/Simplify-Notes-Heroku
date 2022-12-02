@@ -1,0 +1,69 @@
+//npm module
+const { StatusCodes } = require('http-status-codes')
+
+//custom module
+const { BadRequestError, NotFoundError, InternalServerError } = require('../errors')
+const { formatText, setInsertRequests, setUpdateStyleRequests, setImageRequests, addRequestObject, getGoogleDoc, updateGoogleDoc, clearRequestArray, saveTempImage, deleteTempImages } = require('../utils')
+
+const insert = async (req, res) => {
+  const style = req.params.style
+  const { userId, currentDocID } = req.user
+  console.log('insert controleer + ' + userId + ' ' + currentDocID);
+  let insertRequests = null
+
+  const allowedStyles = ["heading", "subheading", "paragraph", "bullet", "image"]
+  if (!(allowedStyles.includes(style))) {
+    throw new NotFoundError("Requested route not found")
+  }
+
+  if (style === 'image') {
+
+    const { image, height, width } = req.body
+    if (!image || !height || !width) {
+      throw new BadRequestError('Please provide image, height and width values')
+    }
+
+    if (!image.startsWith("data:image") && !image.startsWith("https://") && !image.startsWith("http://")) {
+      throw new BadRequestError('Please provide image link or base64 string')
+    }
+
+    if (!(typeof height === 'number') || !(typeof width === 'number')) {
+      throw new BadRequestError('Please provide correct height and width values')
+    }
+
+    let imageSrc = null
+    if (image.startsWith("data:image")) {
+      throw new InternalServerError('Something went wrong. Please try again later.'). // blocking base64 for now
+        imageSrc = await saveTempImage(userId, image)
+    }
+    else {
+      imageSrc = image
+    }
+    console.log('path from controller ' + imageSrc);
+    insertRequests = setImageRequests(imageSrc, height, width)
+  }
+  else {
+
+    const { text } = req.body
+    if (!text || text === '') {
+      throw new BadRequestError('Please provide text value')
+    }
+
+    const formattedText = formatText(text, style)
+    insertRequests = setInsertRequests(formattedText, style)
+  }
+
+  const requestsLength = await addRequestObject(userId, insertRequests)
+  if (requestsLength >= 1) {
+    const response = await updateGoogleDoc(userId, currentDocID)
+    if (!response) {
+      throw new InternalServerError('Something went wrong. Please try again later.')
+    }
+  }
+  return res.status(StatusCodes.OK).json({})
+}
+
+
+module.exports = {
+  insert
+}
