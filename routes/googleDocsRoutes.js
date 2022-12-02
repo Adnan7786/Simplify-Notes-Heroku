@@ -12,7 +12,7 @@ const {
 const router = express.Router()
 
 // router.post('/create', createDocument, storeDocID)
-//router.post('/update', getDocument, storeDocID)
+// router.post('/update', getDocument, storeDocID)
 router.post('/update', updateDocument)
 
 module.exports = router

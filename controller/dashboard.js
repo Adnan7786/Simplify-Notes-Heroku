@@ -277,6 +277,8 @@ const addExisting = async (req, res) => {
     throw new UnauthorizedError('User does not have editing permission for this document')
   }
 
+  const { title } = await getGoogleDoc(documentId)
+
   const currentDoc = await findDocument({
     currentlyEditing: true,
     user: userId
@@ -305,7 +307,7 @@ const addExisting = async (req, res) => {
   const tokenUser = createTokenUser(user)
   attachCookiesToResponse({ res, user: tokenUser })
 
-  return res.status(StatusCodes.OK).json({ name: title, docID })
+  return res.status(StatusCodes.OK).json({ name: document.name, documentId: document._id })
 }
 
 const setCurrEditingDoc = async (req, res) => {
