@@ -55,7 +55,7 @@ app.use(morgan('tiny')) // log format ':method :url :status :res[content-length]
 app.use(express.urlencoded({ extended: false })) // parse form data
 app.use(express.json()) //parse json
 app.use(cookieParser(process.env.JWT_SECRET)) //parse cookies
-app.use(express.static('./public')) //read static assets from ./static folder
+// app.use(express.static('./public')) //read static assets from ./static folder
 
 
 //basic app validation route
