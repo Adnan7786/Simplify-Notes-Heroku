@@ -12,21 +12,21 @@ const mongoSanitize = require('express-mongo-sanitize')
 
 //custom modules import
 //database
-const connectDB = require('./database/connect')
+const connectDB = require('../database/connect')
 //middleware
-const notFoundMiddleware = require('./middleware/not-found')
-const errorHandlerMiddleWare = require('./middleware/error-handler')
-const { authenticateUser } = require('./middleware/google-authentication')
-const authorizeUser = require('./middleware/google-authorization')
-const checkDocID = require('./middleware/checkDocID')
+const notFoundMiddleware = require('../middleware/not-found')
+const errorHandlerMiddleWare = require('../middleware/error-handler')
+const { authenticateUser } = require('../middleware/google-authentication')
+const authorizeUser = require('../middleware/google-authorization')
+const checkDocID = require('../middleware/checkDocID')
 
 //router
-const authRouter = require('./routes/authRoutes')
-const googleAuthRouter = require('./routes/googleAuthRoutes')
-const userRouter = require('./routes/userRoutes')
-const dashboardRoutes = require('./routes/dashboardRoutes')
-const insertRouter = require('./routes/insertRoutes')
-const googleDocsRouter = require('./routes/googleDocsRoutes')
+const authRouter = require('../routes/authRoutes')
+const googleAuthRouter = require('../routes/googleAuthRoutes')
+const userRouter = require('../routes/userRoutes')
+const dashboardRoutes = require('../routes/dashboardRoutes')
+const insertRouter = require('../routes/insertRoutes')
+const googleDocsRouter = require('../routes/googleDocsRoutes')
 
 const app = express()
 
