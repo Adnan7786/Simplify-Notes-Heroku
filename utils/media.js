@@ -221,6 +221,7 @@ const createRequestsJsonFile = async (userId) => {
     await writeFile(requestsPath, reqJson, 'utf8')
     return reqJson
   } catch (error) {
+    console.log('kkkkkk');
     console.log(error) //error while writing to file
     return
   }
