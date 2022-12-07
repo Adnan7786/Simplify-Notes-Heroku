@@ -64,9 +64,9 @@ const checkDocEditPermission = async (docID) => {
   }
 }
 
-const updateGoogleDoc = async (userId, docID) => {
+const updateGoogleDoc = async (userId, docID, requests) => {
   try {
-    const requests = await getRequestsArray(userId)
+    // const requests = await getRequestsArray(userId)
     if (typeof requests === 'undefined' || requests.length === 0) {
       return false
     }
@@ -103,8 +103,8 @@ const updateGoogleDoc = async (userId, docID) => {
 
     console.log('clearing');
 
-    await clearRequestArray(userId)
-    await deleteTempImages(userId)
+    // await clearRequestArray(userId)
+    // await deleteTempImages(userId)
     // console.log(response.config.headers.Authorization)
     return true
   }

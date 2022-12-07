@@ -53,13 +53,18 @@ const insert = async (req, res) => {
     insertRequests = setInsertRequests(formattedText, style)
   }
 
-  const requestsLength = await addRequestObject(userId, insertRequests)
-  if (requestsLength >= 1) {
-    const response = await updateGoogleDoc(userId, currentDocID)
-    if (!response) {
-      throw new InternalServerError('Something went wrong. Please try again later.')
-    }
+  const response = await updateGoogleDoc(userId, currentDocID, insertRequests)
+  if (!response) {
+    throw new InternalServerError('Something went wrong. Please try again later.')
   }
+
+  // const requestsLength = await addRequestObject(userId, insertRequests)
+  // if (requestsLength >= 1) {
+  //   const response = await updateGoogleDoc(userId, currentDocID)
+  //   if (!response) {
+  //     throw new InternalServerError('Something went wrong. Please try again later.')
+  //   }
+  // }
   return res.status(StatusCodes.OK).json({})
 }
 
