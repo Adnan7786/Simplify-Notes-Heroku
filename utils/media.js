@@ -249,6 +249,7 @@ const addRequestObject = async (userId, objs) => {
     console.log(error)
     reqJson = await createRequestsJsonFile(userId)
   }
+  console.log('req', reqJson);
   const reqObj = JSON.parse(reqJson)
   reqObj.requests = [...reqObj.requests, ...objs]
   reqJson = JSON.stringify(reqObj)
