@@ -1,5 +1,6 @@
 //npm module
 const { StatusCodes } = require('http-status-codes')
+const cloudinary = require('cloudinary').v2
 
 //custom module
 const { BadRequestError, NotFoundError, InternalServerError } = require('../errors')
@@ -33,6 +34,8 @@ const insert = async (req, res) => {
 
     let imageSrc = null
     if (image.startsWith("data:image")) {
+      const result = await cloudinary.uploader.upload(image)
+      console.log('resultttt', result);
       throw new InternalServerError('Something went wrong. Please try again later.'). // blocking base64 for now
         imageSrc = await saveTempImage(userId, image)
     }

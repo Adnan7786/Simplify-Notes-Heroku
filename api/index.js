@@ -9,6 +9,12 @@ const helmet = require('helmet')
 const xss = require('xss-clean')
 const cors = require('cors')
 const mongoSanitize = require('express-mongo-sanitize')
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET
+})
 
 //custom modules import
 //database
