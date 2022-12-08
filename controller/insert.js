@@ -20,6 +20,7 @@ const insert = async (req, res) => {
   if (style === 'image') {
 
     const { image, height, width } = req.body
+    console.log('kkkkkk' + ' ' + image + ' ' + height + + ' ' + width);
     if (!image || !height || !width) {
       throw new BadRequestError('Please provide image, height and width values')
     }
