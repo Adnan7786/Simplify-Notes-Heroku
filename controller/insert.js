@@ -20,7 +20,7 @@ const insert = async (req, res) => {
   if (style === 'image') {
 
     const { image, height, width } = req.body
-    console.log('kkkkkk' + ' ' + image + ' ' + height + + ' ' + width);
+    // console.log('kkkkkk' + ' ' + image + ' ' + height + + ' ' + width);
     if (!image || !height || !width) {
       throw new BadRequestError('Please provide image, height and width values')
     }
@@ -35,10 +35,9 @@ const insert = async (req, res) => {
 
     let imageSrc = null
     if (image.startsWith("data:image")) {
-      const result = await cloudinary.uploader.upload(image)
-      console.log('resultttt', result);
-      throw new InternalServerError('Something went wrong. Please try again later.'). // blocking base64 for now
-        imageSrc = await saveTempImage(userId, image)
+      const result = await cloudinary.uploader.upload(image, { folder: 'tmp' })
+      // console.log('resultttt', result);
+      imageSrc = result.secure_url
     }
     else {
       imageSrc = image
