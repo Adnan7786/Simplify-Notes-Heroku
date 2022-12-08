@@ -34,10 +34,12 @@ const insert = async (req, res) => {
     }
 
     let imageSrc = null
+    let public_id = null
     if (image.startsWith("data:image")) {
       const result = await cloudinary.uploader.upload(image, { folder: 'tmp' })
       // console.log('resultttt', result);
       imageSrc = result.secure_url
+      public_id = result.public_id
     }
     else {
       imageSrc = image
@@ -60,6 +62,9 @@ const insert = async (req, res) => {
   if (!response) {
     throw new InternalServerError('Something went wrong. Please try again later.')
   }
+
+  const deleted = await cloudinary.uploader.destroy(public_id)
+  console.log('is deleted ', deleted);
 
   // const requestsLength = await addRequestObject(userId, insertRequests)
   // if (requestsLength >= 1) {
