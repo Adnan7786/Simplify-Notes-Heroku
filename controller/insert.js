@@ -11,7 +11,7 @@ const insert = async (req, res) => {
   const { userId, currentDocID } = req.user
   console.log('insert controleer + ' + userId + ' ' + currentDocID);
   let insertRequests = null
-
+  let public_id = null
   const allowedStyles = ["heading", "subheading", "paragraph", "bullet", "image"]
   if (!(allowedStyles.includes(style))) {
     throw new NotFoundError("Requested route not found")
@@ -34,7 +34,6 @@ const insert = async (req, res) => {
     }
 
     let imageSrc = null
-    let public_id = null
     if (image.startsWith("data:image")) {
       const result = await cloudinary.uploader.upload(image, { folder: 'tmp' })
       // console.log('resultttt', result);
