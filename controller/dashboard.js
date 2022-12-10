@@ -64,7 +64,8 @@ const fetchFolderTree = async (req, res) => {
       'name': document.name,
       'docID': document.docID,
       'createdAt': document.createdAt,
-      'updatedAt': document.updatedAt
+      'updatedAt': document.updatedAt,
+      'currentlyEditing': document.currentlyEditing
     }
   })
 

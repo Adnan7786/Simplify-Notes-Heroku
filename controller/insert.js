@@ -62,8 +62,10 @@ const insert = async (req, res) => {
     throw new InternalServerError('Something went wrong. Please try again later.')
   }
 
-  const deleted = await cloudinary.uploader.destroy(public_id)
-  console.log('is deleted ', deleted);
+  if (public_id) {
+    const deleted = await cloudinary.uploader.destroy(public_id)
+    console.log('is deleted ', deleted);
+  }
 
   // const requestsLength = await addRequestObject(userId, insertRequests)
   // if (requestsLength >= 1) {
