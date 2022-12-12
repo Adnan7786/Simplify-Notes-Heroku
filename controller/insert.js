@@ -66,6 +66,7 @@ const insert = async (req, res) => {
     const deleted = await cloudinary.uploader.destroy(public_id)
     console.log('is deleted ', deleted);
   }
+  console.log('update');
 
   // const requestsLength = await addRequestObject(userId, insertRequests)
   // if (requestsLength >= 1) {
