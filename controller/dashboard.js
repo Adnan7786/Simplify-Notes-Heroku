@@ -333,7 +333,7 @@ const setCurrEditingDoc = async (req, res) => {
   })
 
   console.log(currentDoc?._id, documentId);
-  if (currentDoc && currentDoc._id === documentId) {
+  if (currentDoc && currentDoc._id == documentId) {
     throw new BadRequestError('Already editing the specified document');
   }
 
