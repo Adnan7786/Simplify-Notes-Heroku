@@ -332,14 +332,18 @@ const setCurrEditingDoc = async (req, res) => {
     user: userId
   })
 
-  // console.log('doc ' + document);
-  document.currentlyEditing = true
-  await document.save()
+  if (currentDoc._id === documentId) {
+    throw new BadRequestError('Already editing the specified document');
+  }
 
   if (currentDoc) {
     currentDoc.currentlyEditing = false
     await currentDoc.save()
   }
+
+  // console.log('doc ' + document);
+  document.currentlyEditing = true
+  await document.save()
 
   let user = await findUserById(userId)
   user.currentDocID = document.docID
