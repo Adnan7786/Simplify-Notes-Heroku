@@ -97,7 +97,7 @@ UserSchema.post('save', async function () {
   if (!userRootFolder) {
     await this.model('Folder').create({ name: 'Root', user: userId })
   }
-  await this.model('Style').create({
+  await this.model('Styles').create({
     heading: {
       backgroundColor: {
         red: 1.0,

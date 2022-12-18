@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-const StyleSchema = mongoose.Schema({
+const StylesSchema = mongoose.Schema({
   name: String
   // heading: {
   //   backgroundColor: {
@@ -238,4 +238,4 @@ const StyleSchema = mongoose.Schema({
   // },
 })
 
-module.exports = mongoose.model('Style', StyleSchema)
+module.exports = mongoose.model('Styles', StylesSchema)
