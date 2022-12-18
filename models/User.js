@@ -5,6 +5,8 @@ const validator = require('validator')
 //custom module
 // const { deleteFolderTree, deleteRequestsJsonFile, deleteTempImagesDirectory } = require('../utils')
 
+const Styles = require('./Styles')
+
 const subscriptionSchema = {
   plan: {
     type: String,
@@ -97,7 +99,7 @@ UserSchema.post('save', async function () {
   if (!userRootFolder) {
     await this.model('Folder').create({ name: 'Root', user: userId })
   }
-  await this.model('Styles').create({
+  await Styles.create({
     heading: {
       backgroundColor: {
         red: 1.0,
