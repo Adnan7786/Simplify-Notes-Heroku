@@ -92,7 +92,11 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.post('save', async function () {
   const userId = this._id
-  await this.model('Folder').create({ name: 'Root', user: userId })
+  const userRootFolder = await this.model('Folder').findOne({ user: userId, parentFolder: null })
+  console.log('On User save : ' + userRootFolder);
+  if (!userRootFolder) {
+    await this.model('Folder').create({ name: 'Root', user: userId })
+  }
   await this.model('Style').create({
     heading: {
       backgroundColor: {
