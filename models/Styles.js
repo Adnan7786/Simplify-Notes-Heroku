@@ -13,14 +13,12 @@ const styleObj = {
   backgroundColor: {
     red: colorObj,
     blue: colorObj,
-    green: colorObj,
-    required: true
+    green: colorObj
   },
   foregroundColor: {
     red: colorObj,
     blue: colorObj,
-    green: colorObj,
-    required: true
+    green: colorObj
   },
   fontFamily: {
     type: String,
