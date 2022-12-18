@@ -2,240 +2,60 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-const StylesSchema = mongoose.Schema({
-  name: String
-  // heading: {
-  //   backgroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   foregroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   fontFamily: {
-  //     type: String,
-  //     enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-  //     default: 'Arial'
-  //   },
-  //   fontSize: {
-  //     type: Number,
-  //     enum: [11, 15, 26],
-  //     default: 11
-  //   },
-  //   bold: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   italic: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   underline: {
-  //     type: Boolean,
-  //     default: false
-  //   }
-  // },
-  // subheading: {
-  //   backgroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   foregroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   fontFamily: {
-  //     type: String,
-  //     enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-  //     default: 'Arial'
-  //   },
-  //   fontSize: {
-  //     type: Number,
-  //     enum: [11, 15, 26],
-  //     default: 11
-  //   },
-  //   bold: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   italic: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   underline: {
-  //     type: Boolean,
-  //     default: false
-  //   }
-  // },
-  // bullet: {
-  //   backgroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   foregroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   fontFamily: {
-  //     type: String,
-  //     enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-  //     default: 'Arial'
-  //   },
-  //   fontSize: {
-  //     type: Number,
-  //     enum: [11, 15, 26],
-  //     default: 11
-  //   },
-  //   bold: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   italic: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   underline: {
-  //     type: Boolean,
-  //     default: false
-  //   }
-  // },
-  // paragraph: {
-  //   backgroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   foregroundColor: {
-  //     red: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     blue: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     },
-  //     green: {
-  //       type: Number,
-  //       min: 0.0,
-  //       max: 1.0
-  //     }
-  //   },
-  //   fontFamily: {
-  //     type: String,
-  //     enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-  //     default: 'Arial'
-  //   },
-  //   fontSize: {
-  //     type: Number,
-  //     enum: [11, 15, 26],
-  //     default: 11
-  //   },
-  //   bold: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   italic: {
-  //     type: Boolean,
-  //     default: false
-  //   },
-  //   underline: {
-  //     type: Boolean,
-  //     default: false
-  //   }
-  // },
+const colorObj = {
+  type: Number,
+  min: 0.0,
+  max: 1.0,
+  required: true
+}
+
+const styleObj = {
+  backgroundColor: {
+    red: colorObj,
+    blue: colorObj,
+    green: colorObj,
+    required: true
+  },
+  foregroundColor: {
+    red: colorObj,
+    blue: colorObj,
+    green: colorObj,
+    required: true
+  },
+  fontFamily: {
+    type: String,
+    enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
+    default: 'Arial',
+    required: true
+  },
+  fontSize: {
+    type: Number,
+    enum: [11, 15, 26],
+    default: 11,
+    required: true
+  },
+  bold: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  italic: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  underline: {
+    type: Boolean,
+    default: false,
+    required: true
+  }
+}
+
+const StyleSchema = mongoose.Schema({
+  heading: styleObj,
+  subheading: styleObj,
+  bullet: styleObj,
+  paragraph: styleObj,
 })
 
-module.exports = mongoose.model('Styles', StylesSchema)
+module.exports = mongoose.model('Style', StyleSchema)

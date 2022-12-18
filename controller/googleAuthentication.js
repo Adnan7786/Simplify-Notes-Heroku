@@ -22,7 +22,7 @@ const login = async (req, res) => {
 
   if (!user) {
     user = await createUser(payload) //create user if user does not exist
-    await createUserFiles(user._id)
+    // await createUserFiles(user._id)
   } else {
     user = await updateUser(user, payload) //update existing user if required
   }
