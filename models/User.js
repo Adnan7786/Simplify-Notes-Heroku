@@ -92,11 +92,78 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.post('save', async function () {
   const userId = this._id
-  const userRootFolder = await this.model('Folder').findOne({ user: userId, parentFolder: null })
-  console.log('On User save : ' + userRootFolder);
-  if (!userRootFolder) {
-    await this.model('Folder').create({ name: 'Root', user: userId })
-  }
+  await this.model('Folder').create({ name: 'Root', user: userId })
+  await this.model('Style').create({
+    heading: {
+      backgroundColor: {
+        red: 1.0,
+        blue: 1.0,
+        green: 1.0
+      },
+      foregroundColor: {
+        red: 0.0,
+        blue: 0.0,
+        green: 0.0
+      },
+      fontFamily: "Arial",
+      fontSize: 26,
+      bold: false,
+      italic: false,
+      underline: false
+    },
+    subheading: {
+      backgroundColor: {
+        red: 1.0,
+        blue: 1.0,
+        green: 1.0
+      },
+      foregroundColor: {
+        red: 0.4,
+        blue: 0.4,
+        green: 0.4
+      },
+      fontFamily: "Arial",
+      fontSize: 15,
+      bold: false,
+      italic: false,
+      underline: false
+    },
+    paragraph: {
+      backgroundColor: {
+        red: 1.0,
+        blue: 1.0,
+        green: 1.0
+      },
+      foregroundColor: {
+        red: 0.0,
+        blue: 0.0,
+        green: 0.0
+      },
+      fontFamily: "Arial",
+      fontSize: 11,
+      bold: false,
+      italic: false,
+      underline: false
+    },
+    bullet: {
+      backgroundColor: {
+        red: 1.0,
+        blue: 1.0,
+        green: 1.0
+      },
+      foregroundColor: {
+        red: 0.0,
+        blue: 0.0,
+        green: 0.0
+      },
+      fontFamily: "Arial",
+      fontSize: 11,
+      bold: false,
+      italic: false,
+      underline: false,
+      bulletPreset: 'BULLET_DISC_CIRCLE_SQUARE'
+    }
+  })
 })
 
 UserSchema.pre('remove', async function () {
