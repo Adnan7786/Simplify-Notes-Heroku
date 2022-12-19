@@ -52,7 +52,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      enum: ['Comic Sans MS', 'Georgia', 'Roboto', 'Times New Roman'],
       default: 'Roboto',
       required: true
     },
@@ -127,7 +127,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      enum: ['Comic Sans MS', 'Georgia', 'Roboto', 'Times New Roman'],
       default: 'Roboto',
       required: true
     },
@@ -202,7 +202,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      enum: ['Comic Sans MS', 'Georgia', 'Roboto', 'Times New Roman'],
       default: 'Roboto',
       required: true
     },
@@ -277,7 +277,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      enum: ['Comic Sans MS', 'Georgia', 'Roboto', 'Times New Roman'],
       default: 'Roboto',
       required: true
     },
