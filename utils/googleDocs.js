@@ -64,9 +64,8 @@ const checkDocEditPermission = async (docID) => {
   }
 }
 
-const updateGoogleDoc = async (userId, docID, requests) => {
+const updateGoogleDoc = async (docID, requests, userStyleObj) => {
   try {
-    // const requests = await getRequestsArray(userId)
     if (typeof requests === 'undefined' || requests.length === 0) {
       return false
     }
@@ -85,7 +84,7 @@ const updateGoogleDoc = async (userId, docID, requests) => {
     })
     console.log('hogaya');
     const data = await getGoogleDoc(docID)
-    const updateStyleReqArray = await setUpdateStyleRequests(data.body.content, requests)
+    const updateStyleReqArray = await setUpdateStyleRequests(data.body.content, requests, userStyleObj)
     console.log(updateStyleReqArray);
 
     if (typeof updateStyleReqArray !== 'undefined' && updateStyleReqArray.length > 0) {

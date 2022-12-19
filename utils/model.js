@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Folder = require('../models/Folder')
 const Document = require('../models/Document')
+const Style = require('../models/Style')
 
 
 const findUserById = async (_id) => {
@@ -53,20 +54,6 @@ const storeRefreshToken = async (_id, tokens) => {
   return user
 }
 
-// const storeDocumentID = async (_id, docID) => {
-//   const user = User.findOneAndUpdate({ _id }, { currentDocID: docID }, { new: true, runValidators: true })
-//   return user
-// }
-
-// const removeDocumentID = async (googleID, documentId) => {
-//   let user = null
-//   let userUpdated = false
-//   if (user.currentDocID === documentId) {
-//     user = User.findOneAndUpdate({ googleID: googleID }, { currentDocID: null }, { new: true, runValidators: true })
-//     userUpdated = true
-//   }
-//   return { user, userUpdated }
-// }
 
 const findFolder = async (payload) => {
   const folder = await Folder.findOne(payload)
@@ -107,6 +94,18 @@ const createDocument = async (payload) => {
   return document
 }
 
+const getUserStyle = async (payload) => {
+  const style = await Style.findOne(payload)
+  return style
+}
+
+const updateUserStyle = async (payload) => {
+  const style = await Style.findOne(payload.userId)
+  style[payload.key] = payload.value
+  await style.save()
+  return true
+}
+
 
 module.exports = {
   findUserById,
@@ -122,5 +121,7 @@ module.exports = {
   findAllFolders,
   findAllDocuments,
   createFolder,
-  createDocument
+  createDocument,
+  getUserStyle,
+  updateUserStyle
 }

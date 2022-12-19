@@ -23,14 +23,14 @@ const {
   updateUser,
   createUser,
   storeRefreshToken,
-  storeDocumentID,
-  removeDocumentID,
   findFolder,
   findDocument,
   findAllFolders,
   findAllDocuments,
   createFolder,
-  createDocument
+  createDocument,
+  getUserStyle,
+  updateUserStyle
 } = require('./model')
 
 const createTokenUser = require('./createTokenUser')
@@ -69,7 +69,7 @@ const {
   saveTempImage,
   deleteTempImages,
   createUserFiles,
-  deleteUserFiles
+  deleteUserFiles,
 } = require('./media')
 
 module.exports = {
@@ -89,8 +89,6 @@ module.exports = {
   createUser,
   createTokenUser,
   storeRefreshToken,
-  storeDocumentID,
-  removeDocumentID,
   createGoogleDoc,
   getGoogleDoc,
   checkDocEditPermission,
@@ -124,5 +122,7 @@ module.exports = {
   findAllFolders,
   findAllDocuments,
   createFolder,
-  createDocument
+  createDocument,
+  getUserStyle,
+  updateUserStyle
 }

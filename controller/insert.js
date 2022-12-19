@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2
 
 //custom module
 const { BadRequestError, NotFoundError, InternalServerError } = require('../errors')
-const { formatText, setInsertRequests, setUpdateStyleRequests, setImageRequests, addRequestObject, getGoogleDoc, updateGoogleDoc, clearRequestArray, saveTempImage, deleteTempImages } = require('../utils')
+const { formatText, setInsertRequests, setUpdateStyleRequests, setImageRequests, addRequestObject, getGoogleDoc, updateGoogleDoc, clearRequestArray, saveTempImage, deleteTempImages, getUserStyle } = require('../utils')
 
 const insert = async (req, res) => {
   const style = req.params.style
@@ -57,7 +57,9 @@ const insert = async (req, res) => {
     insertRequests = setInsertRequests(formattedText, style)
   }
 
-  const response = await updateGoogleDoc(userId, currentDocID, insertRequests)
+  const userStyleObj = await getUserStyle({ _id: userId })
+
+  const response = await updateGoogleDoc(currentDocID, insertRequests, userStyleObj)
   if (!response) {
     throw new InternalServerError('Something went wrong. Please try again later.')
   }

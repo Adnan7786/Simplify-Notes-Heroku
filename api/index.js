@@ -33,6 +33,7 @@ const userRouter = require('../routes/userRoutes')
 const dashboardRoutes = require('../routes/dashboardRoutes')
 const insertRouter = require('../routes/insertRoutes')
 const googleDocsRouter = require('../routes/googleDocsRoutes')
+const styleRouter = require('../routes/styleRoutes')
 
 const app = express()
 
@@ -74,6 +75,7 @@ app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/google-auth', authenticateUser, googleAuthRouter)
 app.use('/api/v1/users', authenticateUser, userRouter)
 app.use('/api/v1/dashboard', authenticateUser, dashboardRoutes)
+app.use('/api/v1/style', authenticateUser, styleRouter)
 app.use('/api/v1/insert', authenticateUser, authorizeUser, checkDocID, insertRouter)
 app.use('/api/v1/google-docs', authenticateUser, authorizeUser, checkDocID, googleDocsRouter)
 

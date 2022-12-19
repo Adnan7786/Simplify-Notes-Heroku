@@ -91,7 +91,8 @@ function setImageRequests(imgSrc, height, width) {
   return imageRequest
 }
 
-async function setUpdateStyleRequests(content, requests) {
+async function setUpdateStyleRequests(content, requests, userStyleObj) {
+  console.log(userStyleObj);
   requests.reverse()
   content.reverse()
   const updateStyleRequests = []
