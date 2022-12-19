@@ -124,67 +124,68 @@ async function setUpdateStyleRequests(content, requests, userStyleObj) {
                   'bulletPreset': bulletPreset,
                 }
               })
-              updateStyleRequests.push({
-                "updateTextStyle": {
-                  "textStyle": {
-                    "bold": bold,
-                    "italic": italic,
-                    "underline": underline,
-                    "backgroundColor": {
-                      "color": {
-                        "rgbColor": {
-                          "red": backgroundColor.red,
-                          "green": backgroundColor.green,
-                          "blue": backgroundColor.blue
-                        }
+            }
+            updateStyleRequests.push({
+              "updateTextStyle": {
+                "textStyle": {
+                  "bold": bold,
+                  "italic": italic,
+                  "underline": underline,
+                  "backgroundColor": {
+                    "color": {
+                      "rgbColor": {
+                        "red": backgroundColor.red,
+                        "green": backgroundColor.green,
+                        "blue": backgroundColor.blue
                       }
-                    },
-                    "foregroundColor": {
-                      "color": {
-                        "rgbColor": {
-                          "red": foregroundColor.red,
-                          "green": foregroundColor.green,
-                          "blue": foregroundColor.blue
-                        }
-                      }
-                    },
-                    "fontSize": {
-                      "magnitude": fontSize,
-                      "unit": "PT"
-                    },
-                    "weightedFontFamily": {
-                      "fontFamily": fontFamily,
-                      "weight": 400
                     }
                   },
-                  "fields": "*",
-                  "range": {
-                    "segmentId": "",
-                    "startIndex": startIndex,
-                    "endIndex": endIndex
+                  "foregroundColor": {
+                    "color": {
+                      "rgbColor": {
+                        "red": foregroundColor.red,
+                        "green": foregroundColor.green,
+                        "blue": foregroundColor.blue
+                      }
+                    }
+                  },
+                  "fontSize": {
+                    "magnitude": fontSize,
+                    "unit": "PT"
+                  },
+                  "weightedFontFamily": {
+                    "fontFamily": fontFamily,
+                    "weight": 400
                   }
+                },
+                "fields": "*",
+                "range": {
+                  "segmentId": "",
+                  "startIndex": startIndex,
+                  "endIndex": endIndex
                 }
-              })
-              break
-            }
-          }
-          if (isFound) {
-            j += 1
+              }
+            })
             break
           }
-          j += 1
         }
+        if (isFound) {
+          j += 1
+          break
+        }
+        j += 1
       }
     }
-    // console.log(updateStyleRequests)
-    return updateStyleRequests
   }
+  // console.log(updateStyleRequests)
+  return updateStyleRequests
+}
 
 
 
-  module.exports = {
-    formatText,
-    setInsertRequests,
-    setUpdateStyleRequests,
-    setImageRequests
-  }
+module.exports = {
+  formatText,
+  setInsertRequests,
+  setUpdateStyleRequests,
+  setImageRequests
+}
