@@ -57,7 +57,7 @@ const insert = async (req, res) => {
     insertRequests = setInsertRequests(formattedText, style)
   }
 
-  const userStyleObj = await getUserStyle({ _id: userId })
+  const userStyleObj = await getUserStyle({ user: userId })
 
   const response = await updateGoogleDoc(currentDocID, insertRequests, userStyleObj)
   if (!response) {

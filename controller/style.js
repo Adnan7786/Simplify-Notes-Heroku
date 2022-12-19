@@ -7,7 +7,7 @@ const { getUserStyle, updateUserStyle } = require('../utils')
 
 const getStyles = async (req, res) => {
   const { userId } = req.user
-  const style = await getUserStyle({ _id: userId })
+  const style = await getUserStyle({ user: userId })
   if (!style) {
     throw new BadRequestError('Styles for requested user not found')
   }
