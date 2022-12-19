@@ -226,14 +226,7 @@ const StyleSchema = mongoose.Schema({
       type: Boolean,
       default: false,
       required: true
-    },
-    bulletPreset: {
-      type: String,
-      enum: ['BULLET_DISC_CIRCLE_SQUARE', 'BULLET_CHECKBOX', 'NUMBERED_DECIMAL_NESTED', 'NUMBERED_UPPERROMAN_UPPERALPHA_DECIMAL'],
-      default: 'BULLET_DISC_CIRCLE_SQUARE',
-      required: true
     }
-
   },
   paragraph: {
     backgroundColor: {
@@ -309,6 +302,12 @@ const StyleSchema = mongoose.Schema({
       default: false,
       required: true
     }
+  },
+  bulletPreset: {
+    type: String,
+    enum: ['BULLET_DISC_CIRCLE_SQUARE', 'BULLET_CHECKBOX', 'NUMBERED_DECIMAL_NESTED', 'NUMBERED_UPPERROMAN_UPPERALPHA_DECIMAL'],
+    default: 'BULLET_DISC_CIRCLE_SQUARE',
+    required: true
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

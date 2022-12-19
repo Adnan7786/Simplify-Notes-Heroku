@@ -5,7 +5,7 @@ const validator = require('validator')
 //custom module
 // const { deleteFolderTree, deleteRequestsJsonFile, deleteTempImagesDirectory } = require('../utils')
 
-const Styles = require('./Style')
+const Style = require('./Style')
 
 const subscriptionSchema = {
   plan: {
@@ -99,7 +99,7 @@ UserSchema.post('save', async function () {
   if (!userRootFolder) {
     await this.model('Folder').create({ name: 'Root', user: userId })
   }
-  await Styles.create({ user: userId })
+  await Style.create({ user: userId })
 })
 
 UserSchema.pre('remove', async function () {
@@ -108,6 +108,10 @@ UserSchema.pre('remove', async function () {
   console.log('On User remove : ' + userRootFolder);
   if (userRootFolder) {
     await userRootFolder.remove()
+  }
+  const userStyle = await Style.findOne({ user: userId })
+  if (userStyle) {
+    await userStyle.remove()
   }
 })
 
