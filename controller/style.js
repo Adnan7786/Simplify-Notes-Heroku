@@ -31,20 +31,30 @@ const updateStyles = async (req, res) => {
     throw new BadRequestError('Please provide backgroundColor, foregroundColor, fontFamily, fontSize, bold, italic and underline values')
   }
 
+  if (typeof backgroundColor.red === 'undefined' || typeof backgroundColor.blue === 'undefined' || typeof backgroundColor.green === 'undefined' || typeof foregroundColor.red === 'undefined' || typeof foregroundColor.blue === 'undefined' || typeof foregroundColor.green === 'undefined') {
+    throw new BadRequestError('Please provide backgroundColor.red, backgroundColor.blue, backgroundColor.green, foregroundColor.red, foregroundColor.blue, foregroundColor.green values')
+  }
+
   if (style === 'bullet' && !bulletPreset) {
     throw new BadRequestError('Please provide bulletPreset value')
   }
 
-  const reqObj = await getRequestsJsonObject(userId)
-  const styles = reqObj.styles
-  styles[style] = req.body
-
-  const result = await updateRequestsJsonFile(userId, reqObj)
-  if (!result) {
+  const userStyle = await getUserStyle({ user: userId })
+  userStyle[style] = {
+    foregroundColor,
+    backgroundColor,
+    bold,
+    italic,
+    underline,
+    fontFamily,
+    fontSize
+  }
+  if (style === 'bullet') userStyle['bulletPreset'] = bulletPreset
+  const newStyle = await userStyle.save()
+  if (!newStyle) {
     throw new InternalServerError('Something went wrong. Please try again later.')
   }
-
-  return res.status(StatusCodes.OK).json({})
+  return res.status(StatusCodes.OK).json(newStyle)
 }
 
 

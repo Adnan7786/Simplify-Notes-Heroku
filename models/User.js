@@ -95,11 +95,9 @@ const UserSchema = mongoose.Schema({
 UserSchema.post('save', async function () {
   const userId = this._id
   const userRootFolder = await this.model('Folder').findOne({ user: userId, parentFolder: null })
-  console.log('On User save : ' + userRootFolder);
-  if (!userRootFolder) {
-    await this.model('Folder').create({ name: 'Root', user: userId })
-  }
-  await Style.create({ user: userId })
+  if (!userRootFolder) await this.model('Folder').create({ name: 'Root', user: userId })
+  const userStyle = await Style.findOne({ user: userId })
+  if (!userStyle) await Style.create({ user: userId })
 })
 
 UserSchema.pre('remove', async function () {
