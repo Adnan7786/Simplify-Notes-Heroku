@@ -272,6 +272,8 @@ const addExisting = async (req, res) => {
     throw new BadRequestError('Please provide correct parentFolderId value')
   }
 
+  const docInDB = await findDocument({ docID: documentId })
+
   const isEditable = await checkDocEditPermission(documentId)
 
   if (!isEditable) {
@@ -284,14 +286,23 @@ const addExisting = async (req, res) => {
     currentlyEditing: true,
     user: userId
   })
+  if (currentDoc && currentDoc.docID === documentId) {
+    throw new BadRequestError('Already editing the specified document');
+  }
 
-  const document = await createDocumentInDB({
-    name: title,
-    docID: documentId,
-    currentlyEditing: true,
-    parentFolder: parentFolderId,
-    user: userId
-  })
+  let document = null
+
+  if (!docInDB) {
+    document = await createDocumentInDB({
+      name: title,
+      docID: documentId,
+      currentlyEditing: true,
+      parentFolder: parentFolderId,
+      user: userId
+    })
+  } else {
+    document = docInDB
+  }
 
   if (!document) {
     throw new InternalServerError('Something went wrong. Please try again later')
@@ -301,6 +312,7 @@ const addExisting = async (req, res) => {
     currentDoc.currentlyEditing = false
     await currentDoc.save()
   }
+
 
   let user = await findUserById(userId)
   user.currentDocID = document.docID

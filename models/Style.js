@@ -52,8 +52,8 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-      default: 'Arial',
+      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      default: 'Roboto',
       required: true
     },
     fontSize: {
@@ -127,8 +127,8 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-      default: 'Arial',
+      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      default: 'Roboto',
       required: true
     },
     fontSize: {
@@ -202,8 +202,8 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-      default: 'Arial',
+      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      default: 'Roboto',
       required: true
     },
     fontSize: {
@@ -277,8 +277,8 @@ const StyleSchema = mongoose.Schema({
     },
     fontFamily: {
       type: String,
-      enum: ['Arial', 'Open Sans', 'Poppins', 'Roboto'],
-      default: 'Arial',
+      enum: ['Comic Sans', 'Georgia', 'Roboto', 'Times New Roman'],
+      default: 'Roboto',
       required: true
     },
     fontSize: {

@@ -6,7 +6,7 @@ const DocumentSchema = mongoose.Schema({
     type: String,
     required: [true, 'Please provide name'],
     minlength: 1,
-    maxlength: 20
+    maxlength: 120
   },
   docID: {
     type: String,
