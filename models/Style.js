@@ -59,8 +59,7 @@ const StyleSchema = mongoose.Schema({
     fontSize: {
       type: Number,
       enum: [26],
-      default: 26,
-      required: true
+      default: 26
     },
     bold: {
       type: Boolean,
@@ -134,8 +133,7 @@ const StyleSchema = mongoose.Schema({
     fontSize: {
       type: Number,
       enum: [15],
-      default: 15,
-      required: true
+      default: 15
     },
     bold: {
       type: Boolean,
@@ -209,8 +207,7 @@ const StyleSchema = mongoose.Schema({
     fontSize: {
       type: Number,
       enum: [11],
-      default: 11,
-      required: true
+      default: 11
     },
     bold: {
       type: Boolean,
@@ -284,8 +281,7 @@ const StyleSchema = mongoose.Schema({
     fontSize: {
       type: Number,
       enum: [11],
-      default: 11,
-      required: true
+      default: 11
     },
     bold: {
       type: Boolean,
