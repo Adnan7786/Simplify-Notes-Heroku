@@ -98,7 +98,7 @@ const updateStyle = async (req, res) => {
     throw new NotFoundError("Requested route not found")
   }
 
-  const { backgroundColor, foregroundColor, fontFamily, fontSize, bold, italic, underline, bulletPreset } = req.body
+  const { backgroundColor, foregroundColor, fontFamily, bold, italic, underline, bulletPreset } = req.body
 
   if (typeof backgroundColor === 'undefined' || typeof foregroundColor === 'undefined' || typeof fontFamily === 'undefined' || typeof bold === 'undefined' || typeof italic === 'undefined' || typeof underline === 'undefined') {
     throw new BadRequestError('Please provide backgroundColor, foregroundColor, fontFamily, fontSize, bold, italic and underline values')
@@ -119,8 +119,7 @@ const updateStyle = async (req, res) => {
     bold,
     italic,
     underline,
-    fontFamily,
-    fontSize
+    fontFamily
   }
   if (style === 'bullet') userStyle['bulletPreset'] = bulletPreset
   const newStyle = await userStyle.save()
