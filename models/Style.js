@@ -58,7 +58,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontSize: {
       type: Number,
-      enum: [11, 15, 26],
+      enum: [26],
       default: 26,
       required: true
     },
@@ -133,7 +133,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontSize: {
       type: Number,
-      enum: [11, 15, 26],
+      enum: [15],
       default: 15,
       required: true
     },
@@ -208,7 +208,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontSize: {
       type: Number,
-      enum: [11, 15, 26],
+      enum: [11],
       default: 11,
       required: true
     },
@@ -283,7 +283,7 @@ const StyleSchema = mongoose.Schema({
     },
     fontSize: {
       type: Number,
-      enum: [11, 15, 26],
+      enum: [11],
       default: 11,
       required: true
     },
@@ -305,7 +305,7 @@ const StyleSchema = mongoose.Schema({
   },
   bulletPreset: {
     type: String,
-    enum: ['BULLET_DISC_CIRCLE_SQUARE', 'BULLET_CHECKBOX', 'NUMBERED_DECIMAL_NESTED', 'NUMBERED_UPPERROMAN_UPPERALPHA_DECIMAL'],
+    enum: ['BULLET_DISC_CIRCLE_SQUARE', 'BULLET_LEFTTRIANGLE_DIAMOND_DISC', 'BULLET_CHECKBOX', 'NUMBERED_DECIMAL_NESTED', 'NUMBERED_UPPERROMAN_UPPERALPHA_DECIMAL'],
     default: 'BULLET_DISC_CIRCLE_SQUARE',
     required: true
   },
