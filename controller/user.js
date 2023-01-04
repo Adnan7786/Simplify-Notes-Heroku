@@ -47,8 +47,8 @@ const showCurrentUser = async (req, res) => {
   if (!user) {
     throw new BadRequestError(`User is no longer available`)
   }
-  const { name, email, image, subscription, currentDocID, createdAt } = user
-  res.status(StatusCodes.OK).json({ name, email, image, subscription, currentDocID, createdAt })
+  const { name, email, image, subscription, currentDocID, createdAt, googleRefreshToken } = user
+  res.status(StatusCodes.OK).json({ name, email, image, subscription, currentDocID, createdAt, googleRefreshToken })
 }
 
 // const updateCurrentDocID = async (req, res) => {
